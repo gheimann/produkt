@@ -38,7 +38,7 @@ public class Produkt implements Serializable {
 	private long id;
 	@DisplayProperty(profileSettings = { @DisplayPropertySetting(required = true, showInTable = true) })
 	private String bezeichnung;
-	
+	@DisplayProperty
 	private String beschreibung;
 	@DisplayProperty(captionText="Preis in €")
 	private double preis;
@@ -66,9 +66,13 @@ public class Produkt implements Serializable {
 		return beschreibung;
 	}
 	
-	@DisplayProperty(profileSettings = { @DisplayPropertySetting(showInTable = true) })
+	@DisplayProperty(profileSettings = { @DisplayPropertySetting(showInTable = true, showInDetail = false, readOnly = true) })
 	public String getBeschreibungKurz() {
-		return beschreibung.substring(0,30);
+		return nvl(beschreibung).substring(0, Math.min(nvl(beschreibung).length(), 30));
+	}
+	
+	private String nvl(String str) {
+		return str == null ? "" : str;
 	}
 
 	public void setBeschreibung(String beschreibung) {
