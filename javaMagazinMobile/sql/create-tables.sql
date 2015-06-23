@@ -2,18 +2,15 @@
 
 -- DROP TABLE address;
 
-CREATE TABLE address
+CREATE TABLE produkt
 (
   id serial NOT NULL,
-  anrede integer,
-  email character varying(255),
-  geburtsdatum date,
-  nachname character varying(255),
-  vorname character varying(255),
-  CONSTRAINT address_pkey PRIMARY KEY (id)
+  bezeichnung character varying(20),
+  beschreibung character varying(255),
+  preis numeric(5,2),
+  mwstsatz smallint,
+  CONSTRAINT produkt_pkey PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE address
-  OWNER TO postgres;
