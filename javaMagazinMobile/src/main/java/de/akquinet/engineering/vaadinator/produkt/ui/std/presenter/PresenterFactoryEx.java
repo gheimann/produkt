@@ -2,6 +2,7 @@ package de.akquinet.engineering.vaadinator.produkt.ui.std.presenter;
 
 import java.util.Map;
 
+import de.akquinet.engineering.vaadinator.produkt.model.Warenkorb;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
 import de.akquinet.engineering.vaadinator.produkt.service.WarenkorbService;
 import de.akquinet.engineering.vaadinator.produkt.ui.presenter.Presenter;
@@ -14,14 +15,16 @@ public class PresenterFactoryEx extends PresenterFactory {
 	private ViewFactoryEx viewFactory;
 
 	public PresenterFactoryEx(Map<String, Object> context, ViewFactoryEx viewFactory, ProduktService produktService,
-			WarenkorbService warenkorbService) {
+			WarenkorbService warenkorbService, Warenkorb nutzerWarenkorb) {
 		super(context, viewFactory, produktService, warenkorbService);
 		this.context = context;
 		this.viewFactory = viewFactory;
 		this.produktService = produktService;
+		this.nutzerWarenkorb = nutzerWarenkorb;
 	}
 
 	private ProduktService produktService;
+	private Warenkorb nutzerWarenkorb;
 	private boolean adminMode = false;
 
 	public boolean isAdminMode() {
@@ -40,7 +43,7 @@ public class PresenterFactoryEx extends PresenterFactory {
 	@Override
 	public ProduktChangePresenterImplEx createProduktChangePresenter(Presenter returnPresenter) {
 		return new ProduktChangePresenterImplEx(context, viewFactory.createProduktChangeView(), returnPresenter,
-				produktService, adminMode);
+				produktService, nutzerWarenkorb, adminMode);
 	}
 
 	@Override

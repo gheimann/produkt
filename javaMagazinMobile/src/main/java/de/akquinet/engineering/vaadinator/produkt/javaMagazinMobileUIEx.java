@@ -9,6 +9,7 @@ import com.vaadin.annotations.Theme;
 
 import de.akquinet.engineering.vaadinator.produkt.dao.ProduktDaoPlain;
 import de.akquinet.engineering.vaadinator.produkt.dao.WarenkorbDaoPlain;
+import de.akquinet.engineering.vaadinator.produkt.model.Warenkorb;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktServicePlain;
 import de.akquinet.engineering.vaadinator.produkt.service.WarenkorbService;
@@ -50,7 +51,7 @@ public class javaMagazinMobileUIEx extends javaMagazinMobileUI {
 			WarenkorbDaoPlain warenkorbDaoPlain = new WarenkorbDaoPlain(entityManagerFactory);
 			warenkorbService = new WarenkorbServicePlain(entityManagerFactory, warenkorbDaoPlain);
 			presenterFactory = new PresenterFactoryEx(new HashMap<String, Object>(), new VaadinViewFactoryEx(),
-					produktService, warenkorbService);
+					produktService, warenkorbService, new Warenkorb());
 			// System.out.println(getPage().getLocation().getQuery());
 			boolean adminMode = getPage().getLocation().getQuery() != null
 					&& getPage().getLocation().getQuery().contains("adminMode");
