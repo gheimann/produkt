@@ -1,5 +1,8 @@
 package de.akquinet.engineering.vaadinator.produkt.ui.std.view;
 
+import java.text.MessageFormat;
+
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Button.ClickEvent;
@@ -54,11 +57,16 @@ public class ProduktChangeViewImplEx extends ProduktChangeViewImpl implements Pr
 	}
 
 	@Override
-	public void showInfoMessage(String message) {
+	public void showInfoMessage(String message, String... strings) {
 		if (obtainBundle().containsKey(message)) {
 			message = obtainBundle().getString(message);
 		}
-		Notification.show(message, Notification.Type.HUMANIZED_MESSAGE);
+		if (strings.length > 0) {
+			message = MessageFormat.format(message, (Object[]) strings);
+		}
+		Notification notification = new Notification(message, Notification.Type.HUMANIZED_MESSAGE);
+		notification.setDelayMsec(3000);
+		notification.show(Page.getCurrent());
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class ProduktChangePresenterImplExTest {
 		presenter.onInWarenkorb();
 		assertEquals(1, nutzerWarenkorb.getProdukte().size());
 		assertEquals("test-Beschreibung", nutzerWarenkorb.getProdukte().get(0).getBeschreibung());
-		verify(view).showInfoMessage("istInWarenkorb");
+		verify(view).showInfoMessage("istInWarenkorb", "test", "1");
 		verify(returnPresenter).returnToThisPresener(presenter);
 	}
 

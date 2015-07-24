@@ -37,7 +37,8 @@ public class ProduktChangePresenterImplEx extends ProduktChangePresenterImpl imp
 	@Override
 	public void onInWarenkorb() {
 		nutzerWarenkorb.addProdukt(getProdukt());
-		view.showInfoMessage("istInWarenkorb");
+		view.showInfoMessage("istInWarenkorb", getProdukt().getBezeichnung(),
+				String.valueOf(nutzerWarenkorb.getProdukte().size()));
 		// analog speichern / abbrechen
 		if (returnPresenter != null) {
 			returnPresenter.returnToThisPresener(this);
