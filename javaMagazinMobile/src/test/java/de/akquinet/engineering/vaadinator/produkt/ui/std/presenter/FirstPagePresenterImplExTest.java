@@ -1,11 +1,14 @@
 package de.akquinet.engineering.vaadinator.produkt.ui.std.presenter;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
 import de.akquinet.engineering.vaadinator.produkt.ui.std.view.FirstPageViewEx;
 
 public class FirstPagePresenterImplExTest {
