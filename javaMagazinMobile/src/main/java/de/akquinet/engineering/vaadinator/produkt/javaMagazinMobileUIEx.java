@@ -8,8 +8,11 @@ import javax.persistence.Persistence;
 import com.vaadin.annotations.Theme;
 
 import de.akquinet.engineering.vaadinator.produkt.dao.ProduktDaoPlain;
+import de.akquinet.engineering.vaadinator.produkt.dao.WarenkorbDaoPlain;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktServicePlain;
+import de.akquinet.engineering.vaadinator.produkt.service.WarenkorbService;
+import de.akquinet.engineering.vaadinator.produkt.service.WarenkorbServicePlain;
 import de.akquinet.engineering.vaadinator.produkt.ui.std.presenter.PresenterFactoryEx;
 import de.akquinet.engineering.vaadinator.produkt.ui.std.view.VaadinViewFactoryEx;
 
@@ -40,11 +43,14 @@ public class javaMagazinMobileUIEx extends javaMagazinMobileUI {
 		if (presenterFactory == null) {
 			// Entity-Manager NUR Thread-Safe, wenn er injected wird wie hier
 			ProduktService produktService;
+			WarenkorbService warenkorbService;
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("javaMagazinMobile");
 			ProduktDaoPlain produktDaoPlain = new ProduktDaoPlain(entityManagerFactory);
 			produktService = new ProduktServicePlain(entityManagerFactory, produktDaoPlain);
+			WarenkorbDaoPlain warenkorbDaoPlain = new WarenkorbDaoPlain(entityManagerFactory);
+			warenkorbService = new WarenkorbServicePlain(entityManagerFactory, warenkorbDaoPlain);
 			presenterFactory = new PresenterFactoryEx(new HashMap<String, Object>(), new VaadinViewFactoryEx(),
-					produktService);
+					produktService, warenkorbService);
 			// System.out.println(getPage().getLocation().getQuery());
 			boolean adminMode = getPage().getLocation().getQuery() != null
 					&& getPage().getLocation().getQuery().contains("adminMode");

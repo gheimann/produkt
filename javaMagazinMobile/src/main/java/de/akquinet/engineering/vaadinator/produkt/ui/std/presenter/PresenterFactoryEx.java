@@ -3,6 +3,7 @@ package de.akquinet.engineering.vaadinator.produkt.ui.std.presenter;
 import java.util.Map;
 
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
+import de.akquinet.engineering.vaadinator.produkt.service.WarenkorbService;
 import de.akquinet.engineering.vaadinator.produkt.ui.presenter.Presenter;
 import de.akquinet.engineering.vaadinator.produkt.ui.presenter.SubviewCapablePresenter;
 import de.akquinet.engineering.vaadinator.produkt.ui.std.view.ViewFactoryEx;
@@ -12,8 +13,9 @@ public class PresenterFactoryEx extends PresenterFactory {
 	private Map<String, Object> context;
 	private ViewFactoryEx viewFactory;
 
-	public PresenterFactoryEx(Map<String, Object> context, ViewFactoryEx viewFactory, ProduktService produktService) {
-		super(context, viewFactory, produktService);
+	public PresenterFactoryEx(Map<String, Object> context, ViewFactoryEx viewFactory, ProduktService produktService,
+			WarenkorbService warenkorbService) {
+		super(context, viewFactory, produktService, warenkorbService);
 		this.context = context;
 		this.viewFactory = viewFactory;
 		this.produktService = produktService;

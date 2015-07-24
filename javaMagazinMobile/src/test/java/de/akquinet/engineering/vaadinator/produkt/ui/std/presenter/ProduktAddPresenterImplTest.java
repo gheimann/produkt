@@ -70,7 +70,7 @@ public class ProduktAddPresenterImplTest {
 		verify(view).setObserver(pres);
 		verify(view).initializeUi();
 		verify(view).setBezeichnung(null);
-		verify(view).setBeschreibung(null);
+		verify(view).setBeschreibung("");
 		verify(view).setMwstSatz(0);
 		verify(view).setPreis(0);
 	}
@@ -118,7 +118,7 @@ public class ProduktAddPresenterImplTest {
 
 	private void assertNullPruefung() {
 		assertNull(pres.getProdukt().getBezeichnung());
-		assertNull(pres.getProdukt().getBeschreibung());
+		assertEquals("", pres.getProdukt().getBeschreibung());
 		assertEquals(0, pres.getProdukt().getMwstSatz());
 		assertEquals(0.0, pres.getProdukt().getPreis());
 	}
