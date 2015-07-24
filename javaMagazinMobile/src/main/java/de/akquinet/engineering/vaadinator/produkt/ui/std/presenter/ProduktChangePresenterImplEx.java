@@ -3,6 +3,7 @@ package de.akquinet.engineering.vaadinator.produkt.ui.std.presenter;
 import java.util.Map;
 
 import de.akquinet.engineering.vaadinator.produkt.model.Warenkorb;
+import de.akquinet.engineering.vaadinator.produkt.model.WarenkorbItem;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
 import de.akquinet.engineering.vaadinator.produkt.ui.presenter.Presenter;
 import de.akquinet.engineering.vaadinator.produkt.ui.std.view.ProduktChangeViewEx;
@@ -36,9 +37,9 @@ public class ProduktChangePresenterImplEx extends ProduktChangePresenterImpl imp
 
 	@Override
 	public void onInWarenkorb() {
-		nutzerWarenkorb.addProdukt(getProdukt());
+		nutzerWarenkorb.addItem(new WarenkorbItem(getProdukt()));
 		view.showInfoMessage("istInWarenkorb", getProdukt().getBezeichnung(),
-				String.valueOf(nutzerWarenkorb.getProdukte().size()));
+				String.valueOf(nutzerWarenkorb.getItems().size()));
 		// analog speichern / abbrechen
 		if (returnPresenter != null) {
 			returnPresenter.returnToThisPresener(this);

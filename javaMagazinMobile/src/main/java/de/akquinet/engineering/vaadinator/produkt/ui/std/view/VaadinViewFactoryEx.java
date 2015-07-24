@@ -21,4 +21,9 @@ public class VaadinViewFactoryEx extends VaadinViewFactory implements ViewFactor
 		return new FirstPageViewImplEx();
 	}
 
+	@Override
+	public WarenkorbChangeViewEx createWarenkorbChangeView() {
+		return new WarenkorbChangeViewImplEx();
+	}
+
 }

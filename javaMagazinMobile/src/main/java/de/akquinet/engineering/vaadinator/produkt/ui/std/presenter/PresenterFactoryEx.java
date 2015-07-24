@@ -20,10 +20,12 @@ public class PresenterFactoryEx extends PresenterFactory {
 		this.context = context;
 		this.viewFactory = viewFactory;
 		this.produktService = produktService;
+		this.warenkorbService = warenkorbService;
 		this.nutzerWarenkorb = nutzerWarenkorb;
 	}
 
 	private ProduktService produktService;
+	private WarenkorbService warenkorbService;
 	private Warenkorb nutzerWarenkorb;
 	private boolean adminMode = false;
 
@@ -37,7 +39,7 @@ public class PresenterFactoryEx extends PresenterFactory {
 
 	@Override
 	public FirstPagePresenter createFirstPagePresenter() {
-		return new FirstPagePresenterImplEx(context, viewFactory.createFirstPageView(), this, adminMode);
+		return new FirstPagePresenterImplEx(context, viewFactory.createFirstPageView(), this, nutzerWarenkorb, adminMode);
 	}
 
 	@Override
@@ -51,6 +53,11 @@ public class PresenterFactoryEx extends PresenterFactory {
 			SubviewCapablePresenter subviewCapablePresenter) {
 		return new ProduktListPresenterImplEx(context, viewFactory.createProduktListView(), this, produktService,
 				subviewCapablePresenter, adminMode);
+	}
+
+	@Override
+	public WarenkorbChangePresenterImplEx createWarenkorbChangePresenter(Presenter returnPresenter) {
+		return new WarenkorbChangePresenterImplEx(context, viewFactory.createWarenkorbChangeView(), returnPresenter, warenkorbService);
 	}
 
 }

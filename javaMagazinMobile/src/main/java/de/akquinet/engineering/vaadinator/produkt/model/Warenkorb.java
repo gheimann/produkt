@@ -6,6 +6,9 @@ import java.util.List;
 
 import de.akquinet.engineering.vaadinator.annotations.DisplayBean;
 import de.akquinet.engineering.vaadinator.annotations.DisplayBeanSetting;
+import de.akquinet.engineering.vaadinator.annotations.DisplayProperty;
+import de.akquinet.engineering.vaadinator.annotations.DisplayPropertySetting;
+import de.akquinet.engineering.vaadinator.annotations.FieldType;
 
 @DisplayBean(profiles = @DisplayBeanSetting(profileName = "std", showOnFirstPage = false))
 public class Warenkorb implements Serializable {
@@ -19,18 +22,25 @@ public class Warenkorb implements Serializable {
 		super();
 	}
 
-	private List<Produkt> produkte = new ArrayList<Produkt>();
+	private List<WarenkorbItem> items = new ArrayList<WarenkorbItem>();
 
-	public List<Produkt> getProdukte() {
-		return produkte;
+	public List<WarenkorbItem> getItems() {
+		return items;
 	}
 
-	public void setProdukte(List<Produkt> produkte) {
-		this.produkte = produkte;
+	public void setItems(List<WarenkorbItem> items) {
+		this.items = items;
 	}
 
-	public void addProdukt(Produkt produkt) {
-		produkte.add(produkt);
+	public void addItem(WarenkorbItem item) {
+		items.add(item);
+	}
+	
+	// TODO: Summen
+
+	@DisplayProperty(captionText = "Anzahl Produkte", profileSettings = @DisplayPropertySetting(readOnly = true, fieldType = FieldType.LABEL))
+	public int getAnzahlItems() {
+		return getItems().size();
 	}
 
 }

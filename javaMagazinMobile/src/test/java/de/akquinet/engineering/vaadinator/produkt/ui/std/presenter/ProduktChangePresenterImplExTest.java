@@ -54,10 +54,10 @@ public class ProduktChangePresenterImplExTest {
 		presenter = new ProduktChangePresenterImplEx(new HashMap<String, Object>(), view, returnPresenter, null,
 				nutzerWarenkorb, false);
 		presenter.setProdukt(produkt);
-		assertEquals(0, nutzerWarenkorb.getProdukte().size());
+		assertEquals(0, nutzerWarenkorb.getItems().size());
 		presenter.onInWarenkorb();
-		assertEquals(1, nutzerWarenkorb.getProdukte().size());
-		assertEquals("test-Beschreibung", nutzerWarenkorb.getProdukte().get(0).getBeschreibung());
+		assertEquals(1, nutzerWarenkorb.getItems().size());
+		assertEquals("test", nutzerWarenkorb.getItems().get(0).getBezeichnung());
 		verify(view).showInfoMessage("istInWarenkorb", "test", "1");
 		verify(returnPresenter).returnToThisPresener(presenter);
 	}

@@ -11,4 +11,7 @@ public interface ViewFactoryEx extends ViewFactory {
 	@Override
 	public FirstPageViewEx createFirstPageView();
 	
+	@Override
+	public WarenkorbChangeViewEx createWarenkorbChangeView();
+	
 }
