@@ -8,14 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import de.akquinet.engineering.vaadinator.annotations.DisplayBean;
-import de.akquinet.engineering.vaadinator.annotations.DisplayBeanSetting;
 import de.akquinet.engineering.vaadinator.annotations.DisplayProperty;
 import de.akquinet.engineering.vaadinator.annotations.DisplayPropertySetting;
 import de.akquinet.engineering.vaadinator.annotations.FieldType;
 
-@DisplayBean(captionText = "Produkt", profiles = {
-		@DisplayBeanSetting(profileName = "std"),
-		@DisplayBeanSetting(profileName = "warenkorb") })
+@DisplayBean(captionText = "Produkt")
 @Entity
 public class Produkt implements Serializable {
 
@@ -42,14 +39,11 @@ public class Produkt implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@DisplayProperty(profileSettings = { @DisplayPropertySetting(required = true, showInTable = true),
-			@DisplayPropertySetting(profileName = "warenkorb", showInTable = true) })
+	@DisplayProperty(profileSettings = @DisplayPropertySetting(required = true, showInTable = true))
 	private String bezeichnung;
 	@DisplayProperty(profileSettings = @DisplayPropertySetting(fieldType = FieldType.TEXTAREA))
 	private String beschreibung = "";
-	@DisplayProperty(captionText = "Preis in €", profileSettings = {
-			@DisplayPropertySetting(profileName = "std"),
-			@DisplayPropertySetting(profileName = "warenkorb", showInTable = true) })
+	@DisplayProperty(captionText = "Preis in €")
 	private double preis; // Brutto
 	@DisplayProperty(captionText = "Mehrwertsteuersatz")
 	private int mwstSatz; // ganzzahl-% (also 7 bedeutet 7%)
@@ -74,9 +68,7 @@ public class Produkt implements Serializable {
 		return beschreibung;
 	}
 
-	@DisplayProperty(captionText = "Beschreibung", profileSettings = {
-			@DisplayPropertySetting(showInTable = true, showInDetail = false, readOnly = true),
-			@DisplayPropertySetting(profileName = "warenkorb", readOnly = true) })
+	@DisplayProperty(captionText = "Beschreibung", profileSettings = @DisplayPropertySetting(showInTable = true, showInDetail = false, readOnly = true))
 	public String getBeschreibungKurz() {
 		String beschreibung = getBeschreibung();
 		if (beschreibung != null) {
