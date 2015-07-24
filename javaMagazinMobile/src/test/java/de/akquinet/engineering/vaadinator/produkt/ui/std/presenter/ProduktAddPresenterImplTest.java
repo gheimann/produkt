@@ -41,6 +41,7 @@ public class ProduktAddPresenterImplTest {
 	Presenter returnPres;
 	ProduktService service;
 	ProduktAddPresenterImpl pres;
+	
 	private String bezeichnung;
 	private String beschreibung;
 	private double preis;
@@ -49,10 +50,6 @@ public class ProduktAddPresenterImplTest {
 	@Before
 	public void setUp() {
 		view = mock(ProduktAddView.class);
-		when(view.getBezeichnung()).thenReturn("bezeichnung");
-		when(view.getBeschreibung()).thenReturn("beschreibung");
-		when(view.getMwstSatz()).thenReturn(0);
-		when(view.getPreis()).thenReturn(0.0);
 		returnPres = mock(Presenter.class);
 		service = mock(ProduktService.class);
 		pres = new ProduktAddPresenterImpl(new HashMap<String, Object>(), view, returnPres, service);
@@ -60,6 +57,10 @@ public class ProduktAddPresenterImplTest {
 		beschreibung = "leckerster Kaffee";
 		preis = 21.5;
 		mwstSatz = 7;
+		when(view.getBezeichnung()).thenReturn(bezeichnung);
+		when(view.getBeschreibung()).thenReturn(beschreibung);
+		when(view.getMwstSatz()).thenReturn(mwstSatz);
+		when(view.getPreis()).thenReturn(preis);
 	}
 
 	@Test
@@ -79,7 +80,6 @@ public class ProduktAddPresenterImplTest {
 	public void testOnSave() {
 		pres.startPresenting();
 		assertNullPruefung();
-		konfiguriertesReturnVerhalten();
 		when(view.checkAllFieldsValid()).thenReturn(true);
 		pres.onSave();
 		assertEquals(bezeichnung, pres.getProdukt().getBezeichnung());
@@ -96,7 +96,6 @@ public class ProduktAddPresenterImplTest {
 	public void testOnSaveInvalid() {
 		pres.startPresenting();
 		assertNullPruefung();
-		konfiguriertesReturnVerhalten();
 		when(view.checkAllFieldsValid()).thenReturn(false);
 		pres.onSave();
 		assertNullPruefung();
@@ -110,7 +109,6 @@ public class ProduktAddPresenterImplTest {
 	public void testOnCancel() {
 		pres.startPresenting();
 		assertNullPruefung();
-		konfiguriertesReturnVerhalten();
 		when(view.checkAllFieldsValid()).thenReturn(true);
 		pres.onCancel();
 		assertNullPruefung();
@@ -118,14 +116,6 @@ public class ProduktAddPresenterImplTest {
 		verify(returnPres).returnToThisPresener((Presenter) any());
 	}
 
-	
-	private void konfiguriertesReturnVerhalten() {
-		when(view.getBezeichnung()).thenReturn(bezeichnung);
-		when(view.getBeschreibung()).thenReturn(beschreibung);
-		when(view.getMwstSatz()).thenReturn(mwstSatz);
-		when(view.getPreis()).thenReturn(preis);
-	}
-	
 	private void assertNullPruefung() {
 		assertNull(pres.getProdukt().getBezeichnung());
 		assertNull(pres.getProdukt().getBeschreibung());
