@@ -26,7 +26,7 @@ public class ProduktListPresenterImplEx extends ProduktListPresenterImpl {
 	@Override
 	public void startPresenting() {
 		super.startPresenting();
-		view.setAddButtonVisible(adminMode);
+		view.setUnlimitedView(adminMode);
 	}
 
 }

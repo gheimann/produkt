@@ -34,7 +34,7 @@ public class ProduktChangePresenterImplEx extends ProduktChangePresenterImpl {
 	@Override
 	public void startPresenting() {
 		super.startPresenting();
-		view.setSaveButtonVisible(adminMode);
+		view.setUnlimitedView(adminMode);
 	}
 
 }

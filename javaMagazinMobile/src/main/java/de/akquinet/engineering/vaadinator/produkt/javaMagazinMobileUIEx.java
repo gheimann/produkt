@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.vaadin.annotations.Theme;
+
 import de.akquinet.engineering.vaadinator.produkt.dao.ProduktDaoPlain;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktService;
 import de.akquinet.engineering.vaadinator.produkt.service.ProduktServicePlain;
@@ -19,6 +21,7 @@ import de.akquinet.engineering.vaadinator.produkt.ui.std.view.VaadinViewFactoryE
  * @author srothbucher
  * 
  */
+@Theme("touchkitprodukt")
 public class javaMagazinMobileUIEx extends javaMagazinMobileUI {
 
 	/**

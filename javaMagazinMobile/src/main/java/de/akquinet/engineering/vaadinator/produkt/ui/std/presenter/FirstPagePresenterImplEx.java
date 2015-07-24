@@ -24,7 +24,7 @@ public class FirstPagePresenterImplEx extends FirstPagePresenterImpl {
 	@Override
 	public void startPresenting() {
 		super.startPresenting();
-		view.setAddButtonVisible(adminMode);
+		view.setUnlimitedView(adminMode);
 	}
 
 }

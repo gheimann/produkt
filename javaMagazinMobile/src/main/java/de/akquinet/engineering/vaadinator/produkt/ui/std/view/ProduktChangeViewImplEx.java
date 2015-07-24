@@ -12,8 +12,21 @@ public class ProduktChangeViewImplEx extends ProduktChangeViewImpl implements Pr
 	}
 
 	@Override
-	public void setSaveButtonVisible(boolean visible) {
-		save.setVisible(visible);
+	public void initializeUi() {
+		super.initializeUi();
+	}
+
+	@Override
+	public void setUnlimitedView(boolean unlimited) {
+		save.setVisible(unlimited);
+		mwstSatz.setVisible(unlimited);
+		boolean limited = !unlimited;
+		bezeichnung.setReadOnly(limited);
+		beschreibung.setReadOnly(limited);
+		preis.setReadOnly(limited);
+		if (limited) {
+			cancel.setCaption(obtainBundle().getString("close"));
+		}
 	}
 
 }

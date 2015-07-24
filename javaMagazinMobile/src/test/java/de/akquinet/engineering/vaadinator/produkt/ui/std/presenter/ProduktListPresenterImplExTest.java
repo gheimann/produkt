@@ -36,8 +36,8 @@ public class ProduktListPresenterImplExTest {
 		presenter = new ProduktListPresenterImplEx(new HashMap<String, Object>(), view, null, service, null, false);
 		presenter.startPresenting();
 		verify(view).initializeUi();
-		verify(view).setAddButtonVisible(false);
-		verify(view, never()).setAddButtonVisible(true);
+		verify(view).setUnlimitedView(false);
+		verify(view, never()).setUnlimitedView(true);
 		verify(view).setOrRefreshData(anyListOf(Produkt.class));
 	}
 
@@ -46,7 +46,7 @@ public class ProduktListPresenterImplExTest {
 		presenter = new ProduktListPresenterImplEx(new HashMap<String, Object>(), view, null, service, null, true);
 		presenter.startPresenting();
 		verify(view).initializeUi();
-		verify(view).setAddButtonVisible(true);
+		verify(view).setUnlimitedView(true);
 		verify(view).setOrRefreshData(anyListOf(Produkt.class));
 	}
 

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import de.akquinet.engineering.vaadinator.annotations.DisplayBean;
 import de.akquinet.engineering.vaadinator.annotations.DisplayProperty;
 import de.akquinet.engineering.vaadinator.annotations.DisplayPropertySetting;
+import de.akquinet.engineering.vaadinator.annotations.FieldType;
 
 @DisplayBean(captionText = "Produkt")
 @Entity
@@ -19,6 +20,8 @@ public class Produkt implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static final int KUERZUNG_LAENGE = 50;
 
 	public Produkt() {
 		super();
@@ -38,8 +41,8 @@ public class Produkt implements Serializable {
 	private long id;
 	@DisplayProperty(profileSettings = { @DisplayPropertySetting(required = true, showInTable = true) })
 	private String bezeichnung;
-	@DisplayProperty
-	private String beschreibung;
+	@DisplayProperty(profileSettings = @DisplayPropertySetting(fieldType = FieldType.TEXTAREA))
+	private String beschreibung = "";
 	@DisplayProperty(captionText="Preis in €")
 	private double preis;
 	@DisplayProperty(captionText="Mehrwertsteuersatz")
@@ -66,15 +69,20 @@ public class Produkt implements Serializable {
 		return beschreibung;
 	}
 	
-	@DisplayProperty(profileSettings = { @DisplayPropertySetting(showInTable = true, showInDetail = false, readOnly = true) })
+	@DisplayProperty(captionText = "Beschreibung", profileSettings = { @DisplayPropertySetting(showInTable = true, showInDetail = false, readOnly = true) })
 	public String getBeschreibungKurz() {
-		return nvl(beschreibung).substring(0, Math.min(nvl(beschreibung).length(), 30));
+		String beschreibung = getBeschreibung();
+		if (beschreibung != null) {
+			if (beschreibung.length() > KUERZUNG_LAENGE) {
+				return beschreibung.substring(0, KUERZUNG_LAENGE - 3) + "...";
+			} else {
+				return beschreibung;
+			}
+		} else {
+			return null;
+		}
 	}
 	
-	private String nvl(String str) {
-		return str == null ? "" : str;
-	}
-
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
 	}

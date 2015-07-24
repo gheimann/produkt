@@ -12,8 +12,8 @@ public class ProduktListViewImplEx extends ProduktListViewImpl implements Produk
 	}
 
 	@Override
-	public void setAddButtonVisible(boolean visible) {
-		addProdukt.setVisible(visible);
+	public void setUnlimitedView(boolean unlimited) {
+		addProdukt.setVisible(unlimited);
 	}
 
 }

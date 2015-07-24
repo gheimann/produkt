@@ -26,8 +26,8 @@ public class FirstPagePresenterImplExTest {
 		 presenter = new FirstPagePresenterImplEx(new HashMap<String, Object>(), view, null, false);
 		 presenter.startPresenting();
 		 verify(view).initializeUi();
-		 verify(view).setAddButtonVisible(false);
-		 verify(view, never()).setAddButtonVisible(true);
+		 verify(view).setUnlimitedView(false);
+		 verify(view, never()).setUnlimitedView(true);
 	 }
 	
 	 @Test
@@ -35,7 +35,7 @@ public class FirstPagePresenterImplExTest {
 		 presenter = new FirstPagePresenterImplEx(new HashMap<String, Object>(), view, null, true);
 		 presenter.startPresenting();
 		 verify(view).initializeUi();
-		 verify(view).setAddButtonVisible(true);
+		 verify(view).setUnlimitedView(true);
 	 }
 	
 }

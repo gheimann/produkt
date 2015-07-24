@@ -26,8 +26,8 @@ public class ProduktChangePresenterImplExTest {
 		presenter = new ProduktChangePresenterImplEx(new HashMap<String, Object>(), view, null, null, false);
 		presenter.startPresenting();
 		verify(view).initializeUi();
-		verify(view).setSaveButtonVisible(false);
-		verify(view, never()).setSaveButtonVisible(true);
+		verify(view).setUnlimitedView(false);
+		verify(view, never()).setUnlimitedView(true);
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class ProduktChangePresenterImplExTest {
 		presenter = new ProduktChangePresenterImplEx(new HashMap<String, Object>(), view, null, null, true);
 		presenter.startPresenting();
 		verify(view).initializeUi();
-		verify(view).setSaveButtonVisible(true);
+		verify(view).setUnlimitedView(true);
 	}
 
 }

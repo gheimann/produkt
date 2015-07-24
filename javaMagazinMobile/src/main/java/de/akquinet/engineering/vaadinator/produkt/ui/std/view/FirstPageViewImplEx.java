@@ -12,8 +12,8 @@ public class FirstPageViewImplEx extends FirstPageViewImpl implements FirstPageV
 	}
 
 	@Override
-	public void setAddButtonVisible(boolean visible) {
-		newProduktButton.setVisible(visible);
+	public void setUnlimitedView(boolean unlimited) {
+		newProduktButton.setVisible(unlimited);
 	}
 
 }
