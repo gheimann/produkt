@@ -1,6 +1,5 @@
 package de.akquinet.engineering.vaadinator.produkt.model;
 
-
 public class WarenkorbItem {
 
 	private Produkt produkt;
@@ -16,6 +15,14 @@ public class WarenkorbItem {
 
 	public double getPreis() {
 		return produkt.getPreis();
+	}
+
+	public double getMwSt() {
+		return produkt.getMwSt();
+	}
+
+	public double getPreisNetto() {
+		return produkt.getPreisNetto();
 	}
 
 }

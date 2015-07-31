@@ -1,7 +1,10 @@
 package de.akquinet.engineering.vaadinator.produkt.ui.std.view;
 
 import java.text.MessageFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
+import com.vaadin.data.util.converter.Converter.ConversionException;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
@@ -18,10 +21,12 @@ public class ProduktChangeViewImplEx extends ProduktChangeViewImpl implements Pr
 	public ProduktChangeViewImplEx() {
 		super();
 	}
-	
+
 	protected Button inWarenkorb = new Button();
-	
+
 	private ProduktChangeViewEx.Observer observer;
+
+	private final NumberFormat format = NumberFormatUtils.createNumberFormat();
 
 	@Override
 	public void initializeUi() {
@@ -29,7 +34,7 @@ public class ProduktChangeViewImplEx extends ProduktChangeViewImpl implements Pr
 		inWarenkorb.addStyleName("styleid-ProduktChangeViewImplEx-inWarenkorb");
 		inWarenkorb.setCaption(obtainBundle().getString("inWarenkorb"));
 		inWarenkorb.addClickListener(new ClickListener() {
-			
+
 			/**
 			 * 
 			 */
@@ -72,7 +77,21 @@ public class ProduktChangeViewImplEx extends ProduktChangeViewImpl implements Pr
 	@Override
 	public void setObserver(ProduktChangeView.Observer observer) {
 		super.setObserver(observer);
-		this.observer = (ProduktChangeViewEx.Observer) observer;		
+		this.observer = (ProduktChangeViewEx.Observer) observer;
+	}
+
+	@Override
+	public double getPreis() {
+		try {
+			return format.parse(preis.getValue()).doubleValue();
+		} catch (ParseException e) {
+			throw new ConversionException(e);
+		}
+	}
+
+	@Override
+	public void setPreis(double preis) {
+		this.preis.setValue(format.format(preis));
 	}
 
 }

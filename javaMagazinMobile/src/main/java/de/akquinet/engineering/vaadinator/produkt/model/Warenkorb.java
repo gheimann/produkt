@@ -35,12 +35,37 @@ public class Warenkorb implements Serializable {
 	public void addItem(WarenkorbItem item) {
 		items.add(item);
 	}
-	
-	// TODO: Summen
 
 	@DisplayProperty(captionText = "Anzahl Produkte", profileSettings = @DisplayPropertySetting(readOnly = true, fieldType = FieldType.LABEL))
 	public int getAnzahlItems() {
 		return getItems().size();
+	}
+
+	@DisplayProperty(captionText = "Summe in €", profileSettings = @DisplayPropertySetting(readOnly = true, fieldType = FieldType.LABEL))
+	public double getBruttoSumme() {
+		double res = 0.0;
+		for (WarenkorbItem item : getItems()) {
+			res += item.getPreis();
+		}
+		return res;
+	}
+
+	@DisplayProperty(captionText = "Summe netto in €", profileSettings = @DisplayPropertySetting(readOnly = true, fieldType = FieldType.LABEL))
+	public double getNettoSumme() {
+		double res = 0.0;
+		for (WarenkorbItem item : getItems()) {
+			res += item.getPreisNetto();
+		}
+		return res;
+	}
+
+	@DisplayProperty(captionText = "Summe MwSt in €", profileSettings = @DisplayPropertySetting(readOnly = true, fieldType = FieldType.LABEL))
+	public double getMwStSumme() {
+		double res = 0.0;
+		for (WarenkorbItem item : getItems()) {
+			res += item.getMwSt();
+		}
+		return res;
 	}
 
 }

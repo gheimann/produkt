@@ -1,3 +1,7 @@
 .v-table-cell-content-cell-beschreibungKurz .v-table-cell-wrapper { 
 	white-space: normal; 
 }
+
+.styleid-WarenkorbEditViewImpl-sectionBasisdaten .v-caption {
+	min-width: 200px;
+}
