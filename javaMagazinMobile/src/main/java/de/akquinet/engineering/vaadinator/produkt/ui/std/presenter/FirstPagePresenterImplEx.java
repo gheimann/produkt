@@ -33,7 +33,7 @@ public class FirstPagePresenterImplEx extends FirstPagePresenterImpl implements 
 	}
 
 	@Override
-	public void onMeinWarenkorb() { // TODO: test
+	public void onMeinWarenkorb() { 
 		WarenkorbChangePresenter cpres = presenterFactory.createWarenkorbChangePresenter(this);
 		cpres.setWarenkorb(nutzerWarenkorb);
 		view.openSubView(cpres.getView());
