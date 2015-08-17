@@ -26,14 +26,14 @@ import de.akquinet.engineering.vaadinator.produkt.ui.std.view.VaadinViewFactoryE
  * 
  */
 @Theme("touchkitprodukt")
-public class javaMagazinMobileUIEx extends javaMagazinMobileUI {
+public class JavaMagazinMobileUIEx extends JavaMagazinMobileUI {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public javaMagazinMobileUIEx() {
+	public JavaMagazinMobileUIEx() {
 		super();
 	}
 
@@ -45,7 +45,7 @@ public class javaMagazinMobileUIEx extends javaMagazinMobileUI {
 			// Entity-Manager NUR Thread-Safe, wenn er injected wird wie hier
 			ProduktService produktService;
 			WarenkorbService warenkorbService;
-			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("javaMagazinMobile");
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JavaMagazinMobile");
 			ProduktDaoPlain produktDaoPlain = new ProduktDaoPlain(entityManagerFactory);
 			produktService = new ProduktServicePlain(entityManagerFactory, produktDaoPlain);
 			WarenkorbDaoPlain warenkorbDaoPlain = new WarenkorbDaoPlain(entityManagerFactory);
